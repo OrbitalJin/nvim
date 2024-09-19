@@ -48,6 +48,7 @@ local plugins = {
         "pyright",
         "black",
         "gopls",
+        "clangd"
       }
     }
   },

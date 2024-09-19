@@ -14,6 +14,7 @@ local servers = {
   "eslint", 
   "pyright", 
   "gopls",
+  "clangd"
 }
 
 -- Iterate over servers and init their respective lsps 
