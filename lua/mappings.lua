@@ -10,4 +10,9 @@ map("i", "jk", "<ESC>")
 -- Unmap for terminal vertical split
 map("n", "<leader>v", ":VenvSelect <cr>", {desc = "VenvSelect Menu"})
 
+-- Copilot
+map("i", "<leader><TAB>", function ()
+  vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
+end, { desc = "Copilot Accept", noremap = true, silent = true })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")

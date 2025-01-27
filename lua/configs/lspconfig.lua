@@ -10,7 +10,7 @@ local servers = {
   "html", 
   "cssls", 
   "tailwindcss", 
-  "tsserver", 
+  "ts_ls", 
   "eslint", 
   "pyright", 
   "gopls",
