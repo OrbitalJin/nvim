@@ -10,8 +10,8 @@ local plugins = {
   	"nvim-treesitter/nvim-treesitter",
   	opts = {
   		ensure_installed = {
-        "vim", 
-        "lua", 
+        "vim",
+        "lua",
         "vimdoc",
         "html",
         "css",

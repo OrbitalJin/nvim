@@ -11,7 +11,7 @@ map("i", "jk", "<ESC>")
 map("n", "<leader>v", ":VenvSelect <cr>", {desc = "VenvSelect Menu"})
 
 -- Copilot
-map("i", "<leader><TAB>", function ()
+map("i", "<C-l>", function ()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
 end, { desc = "Copilot Accept", noremap = true, silent = true })
 
