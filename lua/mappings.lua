@@ -18,7 +18,7 @@ end, { desc = "Copilot Accept", noremap = true, silent = true })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Disable arrow keys 
-map({ "n", "v", "i", "x" }, "<Up>", "<Nop>")
-map({ "n", "v", "i", "x" }, "<Down>", "<Nop>")
-map({ "n", "v", "i", "x" }, "<Left>", "<Nop>")
-map({ "n", "v", "i", "x" }, "<Right>", "<Nop>")
+-- map({ "n", "v", "i", "x" }, "<Up>", "<Nop>")
+-- map({ "n", "v", "i", "x" }, "<Down>", "<Nop>")
+-- map({ "n", "v", "i", "x" }, "<Left>", "<Nop>")
+-- map({ "n", "v", "i", "x" }, "<Right>", "<Nop>")

@@ -26,3 +26,15 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+-- necessary to boostrap the arduino lsp
+--
+local MY_FQBN = "arduino:avr:nano:cpu=atmega328old"
+lspconfig.arduino_language_server.setup {
+    cmd = {
+        "arduino-language-server",
+        "-cli-config", "/path/to/arduino-cli.yaml",
+        "-fqbn",
+        MY_FQBN
+    }
+}
+
