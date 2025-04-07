@@ -54,6 +54,7 @@ local plugins = {
         "typescript-language-server",
         "lua-language-server",
         "tailwindcss-language-server",
+        "arduino-language-server",
         "eslint-lsp",
         "prettierd",
         "pyright",

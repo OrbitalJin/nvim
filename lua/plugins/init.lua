@@ -1,15 +1,15 @@
 local plugins = {
   {
     "stevearc/conform.nvim",
---  event = 'BufWritePre', -- uncomment for format on save
+    --  event = 'BufWritePre', -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
   },
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
         "vim",
         "lua",
         "vimdoc",
@@ -21,8 +21,8 @@ local plugins = {
         "typescript",
         "tsx",
         "go",
-  		},
-  	},
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
