@@ -15,6 +15,9 @@ map("i", "<C-l>", function ()
   vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
 end, { desc = "Copilot Accept", noremap = true, silent = true })
 
+-- restart lsp
+map("n", "<leader>l", ":LspRestart <cr>", {desc = "Restart LSP"})
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Disable arrow keys 
