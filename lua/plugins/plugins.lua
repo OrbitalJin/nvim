@@ -36,6 +36,7 @@ local plugins = {
       require("nvim-ts-autotag").setup()
     end,
   },
+
   -- {
   --   "github/copilot.vim",
   --   lazy = false,
