@@ -12,7 +12,6 @@ local servers = {
   "tailwindcss",
   "ts_ls",
   "eslint",
-  "black",
   "pyright",
   "gopls",
   -- "clangd",

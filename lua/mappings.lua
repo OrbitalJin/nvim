@@ -10,10 +10,13 @@ map("i", "jk", "<ESC>")
 -- Unmap for terminal vertical split
 map("n", "<leader>v", ":VenvSelect <cr>", {desc = "VenvSelect Menu"})
 
--- Copilot
-map("i", "<C-l>", function ()
-  vim.fn.feedkeys(vim.fn["copilot#Accept"](), "")
-end, { desc = "Copilot Accept", noremap = true, silent = true })
+-- Codeium
+vim.api.nvim_set_keymap("i", "<C-l>", "codeium#Accept()", {
+  expr = true,         -- This is important! Tells Neovim to evaluate the string as an expression.
+  noremap = true,
+  silent = true,
+  desc = "Codeium Accept",
+})
 
 -- restart lsp
 map("n", "<leader>l", ":LspRestart <cr>", {desc = "Restart LSP"})
