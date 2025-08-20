@@ -23,15 +23,14 @@ local plugins = {
   {
     "Exafunction/windsurf.nvim",
     event = "BufEnter",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
     config = function()
       require("codeium").setup {
         virtual_text = {
           enabled = true,
           idle_delay = 2000,
+          key_bindings = {
+            accept = "<S-Tab>",
+          },
         },
       }
     end,
