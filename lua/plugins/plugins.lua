@@ -1,22 +1,6 @@
 -- These are my custom plugins
 local plugins = {
   {
-    "linux-cultist/venv-selector.nvim",
-      dependencies = {
-        "neovim/nvim-lspconfig",
-        "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
-        { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
-      },
-    lazy = false,
-    branch = "regexp", -- This is the regexp branch, use this for the new version
-    config = function()
-        require("venv-selector").setup()
-      end,
-      keys = {
-        { ",v", "<cmd>VenvSelect<cr>" },
-      },
-  },
-  {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
@@ -30,15 +14,27 @@ local plugins = {
       "typescript",
       "javascriptreact",
       "typescriptreact",
-      "html"
+      "html",
     },
     config = function()
       require("nvim-ts-autotag").setup()
     end,
   },
   {
-  'Exafunction/windsurf.vim',
-  event = 'BufEnter'
+    "Exafunction/windsurf.nvim",
+    event = "BufEnter",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup {
+        virtual_text = {
+          enabled = true,
+          idle_delay = 2000,
+        },
+      }
+    end,
   },
   {
     "williamboman/mason.nvim",
@@ -53,9 +49,9 @@ local plugins = {
         "pyright",
         "black",
         "gopls",
-        "clangd"
-      }
-    }
+        "clangd",
+      },
+    },
   },
 }
 
