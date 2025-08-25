@@ -29,11 +29,26 @@ local plugins = {
           enabled = true,
           idle_delay = 2000,
           key_bindings = {
-            accept = "<S-Tab>",
+            accept = "<Tab>",
           },
         },
       }
     end,
+  },
+  {
+    "davidmh/mdx.nvim",
+    config = true,
+    event = "BufEnter *.mdx",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
+  {
+    "lervag/vimtex",
+    lazy = false,     -- we don't want to lazy load VimTeX
+    init = function()
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_compiler_method = 'latexrun'
+      vim.g.maplocalleader = ","
+    end
   },
   {
     "williamboman/mason.nvim",
