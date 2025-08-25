@@ -47,7 +47,8 @@ local plugins = {
     init = function()
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_method = 'latexrun'
-      vim.g.maplocalleader = ","
+      vim.g.vimtex_compiler_continuous = 1
+      vim.g.vimtex_quickfix_mode = 1
     end
   },
   {
