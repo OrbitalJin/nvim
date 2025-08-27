@@ -27,9 +27,9 @@ local plugins = {
       require("codeium").setup {
         virtual_text = {
           enabled = true,
-          idle_delay = 2000,
+          idle_delay = 50,
           key_bindings = {
-            accept = "<Tab>",
+            accept = "<M-\\>",
           },
         },
       }
@@ -48,7 +48,13 @@ local plugins = {
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_compiler_method = 'latexrun'
       vim.g.vimtex_compiler_continuous = 1
-      vim.g.vimtex_quickfix_mode = 1
+      -- vim.g.vimtex_quickfix_mode = 1
+      -- dump build files in dedicated directory
+      vim.g.vimtex_compiler_latexrun = {
+        executable = "latexrun",
+        options = { "-Wall" },
+        out_dir = "build",
+      }
     end
   },
   {
