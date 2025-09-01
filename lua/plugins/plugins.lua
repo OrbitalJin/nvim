@@ -43,19 +43,24 @@ local plugins = {
   },
   {
     "lervag/vimtex",
-    lazy = false,     -- we don't want to lazy load VimTeX
+    lazy = false,
     init = function()
       vim.g.vimtex_view_method = "zathura"
-      vim.g.vimtex_compiler_method = 'latexrun'
-      vim.g.vimtex_compiler_continuous = 1
-      -- vim.g.vimtex_quickfix_mode = 1
-      -- dump build files in dedicated directory
-      vim.g.vimtex_compiler_latexrun = {
-        executable = "latexrun",
-        options = { "-Wall" },
-        out_dir = "build",
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          "-pdf", -- build PDF
+          "-pdflatex=pdflatex -synctex=1 -interaction=nonstopmode",
+          "-interaction=nonstopmode",
+          "-synctex=1",
+          "-auxdir=build", -- aux files go here
+          "-outdir=.",     -- PDF stays in project root
+        },
       }
-    end
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
   },
   {
     "williamboman/mason.nvim",
