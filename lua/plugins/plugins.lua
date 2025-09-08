@@ -42,6 +42,21 @@ local plugins = {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+    },
+    ft = "python",
+    keys = {
+      { "<leader>v", "<cmd>VenvSelect<cr>" },
+    },
+    opts = {
+        search = {}, -- if you add your own searches, they go here.
+        options = {} -- if you add plugin options, they go here.
+    },
+  },
+  {
     "lervag/vimtex",
     lazy = false,
     init = function()
@@ -52,6 +67,7 @@ local plugins = {
           "-pdf", -- build PDF
           "-pdflatex=pdflatex -synctex=1 -interaction=nonstopmode",
           "-interaction=nonstopmode",
+          "-shell-escape",
           "-synctex=1",
           "-auxdir=build", -- aux files go here
           "-outdir=.",     -- PDF stays in project root
