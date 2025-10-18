@@ -37,3 +37,12 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Transparent Background
+vim.cmd([[
+  hi Normal guibg=none ctermbg=none
+  hi NormalNC guibg=none ctermbg=none
+  hi NormalFloat guibg=none ctermbg=none
+  hi SignColumn guibg=none ctermbg=none
+  hi VertSplit guibg=none ctermbg=none
+]])
