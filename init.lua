@@ -38,6 +38,13 @@ vim.schedule(function()
   require "mappings"
 end)
 
+-- my config
+require('nvim-tree').setup({
+  view = {
+    side = "right",
+  },
+})
+
 -- Transparent Background
 vim.cmd([[
   hi Normal guibg=none ctermbg=none
@@ -46,3 +53,15 @@ vim.cmd([[
   hi SignColumn guibg=none ctermbg=none
   hi VertSplit guibg=none ctermbg=none
 ]])
+
+
+-- kitty
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd("VimEnter", {
+  command = ":silent !kitty @ set-spacing padding=0",
+})
+
+autocmd("VimLeavePre", {
+  command = ":silent !kitty @ set-spacing padding=14",
+})

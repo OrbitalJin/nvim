@@ -8,7 +8,7 @@ local opts = {
     null_ls.builtins.formatting.black,
   },
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
+    if client.server_capabilities.textDocumentFormatting then
       vim.api.nvim_clear_autocmds({
         group = augroup,
         buffer = bufnr,

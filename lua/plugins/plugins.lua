@@ -1,10 +1,25 @@
 -- These are my custom plugins
 local plugins = {
   {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    build = ":TSUpdate",
+    config = function()
+    end,
+  },
+  {
     "nvimtools/none-ls.nvim",
     event = "VeryLazy",
     opts = function()
       return require "configs.custom.null-ls"
+    end,
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
     end,
   },
   {
@@ -27,7 +42,7 @@ local plugins = {
       require("codeium").setup {
         virtual_text = {
           enabled = true,
-          idle_delay = 2000,
+          idle_delay = 200,
           key_bindings = {
             accept = "<M-\\>",
           },
@@ -49,10 +64,6 @@ local plugins = {
         require("opencode").select()
       end, { desc = "Execute opencode action…" })
 
-      vim.keymap.set({ "n", "x" }, "<C-a>", function()
-        require("opencode").ask("@this: ", { submit = true })
-      end, { desc = "Ask opencode" })
-
       vim.keymap.set({ "n", "t" }, "<C-.>", function()
         require("opencode").toggle()
       end, { desc = "Toggle opencode" })
@@ -65,12 +76,6 @@ local plugins = {
         require("opencode").command "session.half.page.down"
       end, { desc = "opencode half page down" })
     end,
-  },
-  {
-    "davidmh/mdx.nvim",
-    config = true,
-    event = "BufEnter *.mdx",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
   {
     "linux-cultist/venv-selector.nvim",
