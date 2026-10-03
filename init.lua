@@ -1,6 +1,24 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 vim.g.mapleader = " "
 
+-- Load local secrets (e.g. AI_GATEWAY_API_KEY) from ~/.config/nvim/.env
+-- Existing shell environment variables take precedence.
+do
+  local env_path = vim.fn.stdpath "config" .. "/.env"
+  if vim.fn.filereadable(env_path) == 1 then
+    for _, line in ipairs(vim.fn.readfile(env_path)) do
+      local key, val = line:match "^%s*([%w_]+)%s*=%s*(.-)%s*$"
+      if key and val ~= "" and vim.env[key] == nil then
+        -- strip optional surrounding quotes
+        if val:sub(1, 1) == '"' and val:sub(-1) == '"' then
+          val = val:sub(2, -2)
+        end
+        vim.env[key] = val
+      end
+    end
+  end
+end
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 

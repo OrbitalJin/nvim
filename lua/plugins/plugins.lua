@@ -36,18 +36,61 @@ local plugins = {
     end,
   },
   {
-    "Exafunction/windsurf.nvim",
-    event = "BufEnter",
+    "milanglacier/minuet-ai.nvim",
+    event = "InsertEnter",
+    dependencies = { "nvim-cmp" },
     config = function()
-      require("codeium").setup {
-        virtual_text = {
-          enabled = true,
-          idle_delay = 200,
-          key_bindings = {
+      require("minuet").setup {
+        provider = "openai_compatible",
+        -- deepseek-v4-flash is a reasoning model; thinking is disabled below
+        -- to keep inline completions fast and cheap.
+        request_timeout = 2.5,
+        throttle = 100,
+        debounce = 400,
+        n_completions = 1,
+        context_window = 8000,
+        notify = "warn",
+        provider_options = {
+          openai_compatible = {
+            -- Name of the env var, not the value. Loaded from ~/.config/nvim/.env
+            api_key = "AI_GATEWAY_API_KEY",
+            end_point = "https://ai-gateway.vercel.sh/v1/chat/completions",
+            model = "deepseek/deepseek-v4-flash",
+            name = "Vercel AI Gateway",
+            stream = true,
+            optional = {
+              max_tokens = 128,
+              top_p = 0.9,
+              -- Vercel AI Gateway expects `reasoning` as an object. This model
+              -- reports an `effort` control with values none|low|medium|high.
+              reasoning = { effort = "none" },
+            },
+          },
+        },
+        virtualtext = {
+          auto_trigger_ft = { "*" },
+          keymap = {
             accept = "<M-\\>",
+            accept_line = "<M-a>",
+            accept_n_lines = "<M-z>",
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<M-e>",
           },
         },
       }
+    end,
+  },
+  {
+    -- Register Minuet as an nvim-cmp source. Merged into NvChad's cmp config,
+    -- so the existing keymaps/snippets are preserved.
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, 1, { name = "minuet" })
+      opts.performance = vim.tbl_deep_extend("force", opts.performance or {}, {
+        fetching_timeout = 2000,
+      })
     end,
   },
   {
@@ -81,7 +124,7 @@ local plugins = {
     "linux-cultist/venv-selector.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
-      { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+      { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/plenary.nvim" } },
     },
     ft = "python",
     opts = {
